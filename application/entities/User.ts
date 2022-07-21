@@ -21,6 +21,11 @@ export class User extends BaseEntity{
     })
     password !: string
 
+    @Column({
+        type : "text"
+    })
+    avatar !: string
+
     @CreateDateColumn()
     created_at !: Date
 

@@ -1,0 +1,20 @@
+<div class="sign section--bg" data-bg="/resources/assets/images/section/section.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="sign__content">
+                    <form id="auth-reset" class="sign__form">
+                        <a href="/" class="sign__logo">
+                            <img src="/resources/assets/images/logo.svg" alt="">
+                        </a>
+                        <div class="sign__group">
+                            <input type="text" spellcheck="false" autofocus="autofocus" name="password" class="sign__input" placeholder="New Password">
+                            <input type="hidden" name="token" value="<%- tokenData.token %>" />
+                        </div>
+                        <button class="sign__btn" type="submit">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

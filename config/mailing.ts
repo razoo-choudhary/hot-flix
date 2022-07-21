@@ -1,9 +1,11 @@
 import nodemailer from "nodemailer"
 
-export class Mailing{
+export class Mailing {
 
-    protected static Init () {
-        return nodemailer.createTransport({
+    static Service : any;
+
+    static Init () {
+        this.Service = nodemailer.createTransport({
             host    :   process.env.SMTP_HOST,
             port    :   Number(process.env.SMTP_PORT),
             secure  :   Boolean(process.env.SMTP_AUTH),

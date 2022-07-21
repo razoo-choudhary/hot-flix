@@ -43,7 +43,7 @@ export class AuthMiddleware {
      */
     static async AuthenticatedGuard ( request : Request, response : Response, Next : any ) {
         if( request.isAuthenticated() ){
-            this.LoggedInUser = request.user
+            AuthMiddleware.LoggedInUser = request.user
             return Next()
         }
         if( !request.xhr ){
@@ -63,7 +63,7 @@ export class AuthMiddleware {
      */
     static async NonAuthenticatedGuard ( request : Request, response : Response, Next : any ) {
         if( request.isAuthenticated() ){
-            this.LoggedInUser = request.user
+            AuthMiddleware.LoggedInUser = request.user
             return response.status(200).redirect("/")
         }
         Next()

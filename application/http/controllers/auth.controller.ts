@@ -31,12 +31,13 @@ export class AuthController {
      * @constructor
      */
     static PreAuthenticate ( request : Request, response : Response, next : () => void ) {
-        passport.authenticate( "local", ( error , user ) : any => {
+        passport.authenticate( "local", ( error , user, info ) => {
             if( error ) return response.status(500).json( error )
+            if( info ) return response.json(info)
             if( user ){
                 request.login( user, function ( error ){
                     if( error ) return response.status(500).json( error )
-                    return response.location("/")
+                    return response.status(200).json( { location : "/" } )
                 })
             }
         }) ( request, response , next)
