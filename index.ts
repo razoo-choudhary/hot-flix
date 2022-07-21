@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import session from "express-session"
 import passport from "passport";
+import {CorsConfig} from "./config/cors";
 
 const server    =   new Server()
 const app       =   server.app
@@ -25,7 +26,7 @@ export const openServer = app.listen( 5000 , () => {
     app.use( bodyParser.json() )
     app.use( expressEjsLayouts )
     app.use( cookieParser() )
-    app.use( cors() )
+    app.use( cors(CorsConfig.Init()) )
     app.use( session({
         secret: "someKey",
         resave: false,
