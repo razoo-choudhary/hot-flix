@@ -28,7 +28,11 @@
 </head>
 <body>
 
+<% if(typeof showHeaderFooter !== "undefined" && showHeaderFooter === true){ %> <%- include("header/content") %> <% } %>
+
 <%- /** * @main body */ body %>
+
+<% if(typeof showHeaderFooter !== "undefined" && showHeaderFooter === true){ %> <%- include("footer/content") %> <% } %>
 
 <!-- JS -->
 <script src="/resources/assets/javascript/axios.min.js"></script>

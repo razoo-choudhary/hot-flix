@@ -1,0 +1,19 @@
+<!-- sidebar -->
+<div class="col-12 col-lg-4 col-xl-4">
+    <div class="row row--grid">
+        <!-- section title -->
+        <div class="col-12">
+            <h2 class="section__title section__title--sidebar">You may also like...</h2>
+        </div>
+        <!-- end section title -->
+
+        <!-- card -->
+        <div class="col-6 col-sm-4 col-lg-6">
+            <% recommended.forEach( function ( movie ) { %>
+                <%- include("../../home/includes/item-single.ejs", { movie })%>
+            <% }) %>
+        </div>
+        <!-- end card -->
+    </div>
+</div>
+<!-- end sidebar -->

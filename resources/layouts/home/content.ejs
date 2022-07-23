@@ -1,1 +1,159 @@
-this is homepage
+<!-- home -->
+<section class="home">
+    <!-- home bg -->
+    <div class="owl-carousel home__bg">
+        <div class="item home__cover" data-bg="/resources/assets/images/home/home__bg.jpg"></div>
+        <div class="item home__cover" data-bg="/resources/assets/images/home/home__bg2.jpg"></div>
+        <div class="item home__cover" data-bg="/resources/assets/images/home/home__bg3.jpg"></div>
+        <div class="item home__cover" data-bg="/resources/assets/images/home/home__bg4.jpg"></div>
+        <div class="item home__cover" data-bg="/resources/assets/images/home/home__bg5.jpg"></div>
+    </div>
+    <!-- end home bg -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="home__title"><b>NEW ITEMS</b> OF THIS SEASON</h1>
+
+                <button class="home__nav home__nav--prev" type="button">
+                    <i class="icon ion-ios-arrow-round-back"></i>
+                </button>
+                <button class="home__nav home__nav--next" type="button">
+                    <i class="icon ion-ios-arrow-round-forward"></i>
+                </button>
+            </div>
+
+            <div class="col-12">
+                <div class="owl-carousel home__carousel home__carousel--bg">
+                    <%  newItemOfThisSeason.forEach( function (movie) { %>
+                        <%- include("./includes/item-single-big.ejs", { movie }) %>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end home -->
+
+<!-- content -->
+<section class="content">
+    <div class="content__head">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- content title -->
+                    <h2 class="content__title">New items</h2>
+                    <!-- end content title -->
+
+                    <!-- content tabs nav -->
+                    <ul class="nav nav-tabs content__tabs" id="content__tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">NEW RELEASES</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">MOVIES</a>
+                        </li>
+                    </ul>
+                    <!-- end content tabs nav -->
+
+                    <!-- content mobile tabs nav -->
+                    <div class="content__mobile-tabs" id="content__mobile-tabs">
+                        <div class="content__mobile-tabs-btn dropdown-toggle" role="navigation" id="mobile-tabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <input type="button" value="New releases">
+                            <span></span>
+                        </div>
+
+                        <div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item"><a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">NEW RELEASES</a></li>
+
+                                <li class="nav-item"><a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">MOVIES</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end content mobile tabs nav -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+                <div class="row row--grid">
+                    <%  newItemOfThisSeason.forEach( function (movie) { %>
+                        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+                            <%- include("./includes/item-single.ejs", { movie }) %>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
+                <div class="row row--grid">
+                    <%  allMovies.forEach( function (movie) { %>
+                        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+                            <%- include("./includes/item-single.ejs", { movie }) %>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end content -->
+
+<!-- section -->
+<section class="section section--border">
+    <div class="container">
+        <div class="row">
+            <!-- section title -->
+            <div class="col-12">
+                <div class="section__title-wrap">
+                    <h2 class="section__title">Expected premiere</h2>
+
+                    <div class="section__nav-wrap">
+                        <a href="catalog.html" class="section__view">View All</a>
+
+                        <button class="section__nav section__nav--prev" type="button" data-nav="#carousel1">
+                            <i class="icon ion-ios-arrow-back"></i>
+                        </button>
+
+                        <button class="section__nav section__nav--next" type="button" data-nav="#carousel1">
+                            <i class="icon ion-ios-arrow-forward"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- end section title -->
+
+            <!-- carousel -->
+            <div class="col-12">
+                <div class="owl-carousel section__carousel" id="carousel1">
+                    <%  expectedMovie.forEach( function (movie) { %>
+                        <%- include("./includes/item-single.ejs", { movie }) %>
+                    <% }) %>
+                </div>
+            </div>
+            <!-- carousel -->
+        </div>
+    </div>
+</section>
+<!-- end section -->
+
+<!-- section -->
+<section class="section section--border">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-xl-10">
+                <h2 class="section__title section__title--mb"><b>HotFlix</b> – Best Place for Movies and TV Shows</h2>
+
+                <p class="section__text">HotFlix is a free movie streaming and downloading service that offers movies for no charge. Although HotFlix is free, it still requires funds to keep its servers functioning, and the only way to accomplish this is through advertising.</p>
+
+                <p class="section__text">If HotFlix is making your favorite movies and television series available at your fingertips for free and you're delighted with our work, feel free to accept a subscription package that will help us develop economically. Again, this is completely optional.</p>
+            </div>
+        </div>
+        <%- include("../pricing/content.ejs", { user }) %>
+    </div>
+</section>
+<!-- end section -->

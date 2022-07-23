@@ -1,0 +1,16 @@
+<!-- project gallery -->
+<div class="gallery" itemscope>
+    <div class="row row--grid">
+        <% screenShots.forEach(function (image) {%>
+        <!-- gallery item -->
+        <figure class="col-12 col-sm-6 col-xl-4" itemprop="associatedMedia" itemscope>
+            <a href="/uploads/<%- image.image_name %>" itemprop="contentUrl" data-size="1920x1280">
+                <img src="/uploads/<%- image.image_name %>" itemprop="thumbnail" alt="Image description" />
+            </a>
+            <figcaption itemprop="caption description">Some image caption 1</figcaption>
+        </figure>
+        <!-- end gallery item -->
+        <% })%>
+    </div>
+</div>
+<!-- end project gallery -->

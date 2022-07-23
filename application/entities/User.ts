@@ -26,6 +26,18 @@ export class User extends BaseEntity{
     })
     avatar !: string
 
+    @Column( {
+        type : "integer",
+        default : 0
+    })
+    is_premium !: number
+
+    @Column( {
+        type : "integer",
+        default : 0
+    })
+    premium_type !: number
+
     @CreateDateColumn()
     created_at !: Date
 

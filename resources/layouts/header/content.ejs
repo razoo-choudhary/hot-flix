@@ -1,0 +1,53 @@
+<!-- header -->
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="header__content">
+                    <!-- header logo -->
+                    <a href="/" class="header__logo">
+                        <img src="/resources/assets/images/logo.svg" alt="">
+                    </a>
+                    <!-- header auth -->
+                    <div class="header__auth">
+                        <form class="header__search">
+                            <input class="header__search-input" type="text" placeholder="Search...">
+                            <button class="header__search-button" type="button">
+                                <i class="icon ion-ios-search"></i>
+                            </button>
+                            <button class="header__search-close" type="button">
+                                <i class="icon ion-md-close"></i>
+                            </button>
+                        </form>
+
+                        <button class="header__search-btn" type="button">
+                            <i class="icon ion-ios-search"></i>
+                        </button>
+
+                        <% if( typeof user === "undefined" || !user){ %>
+                            <a href="/signin" class="header__sign-in">
+                                <i class="icon ion-ios-log-in"></i>
+                                <span>sign in</span>
+                            </a>
+                        <% }else{ %>
+                            <a href="/dashboard" class="header__sign-in">
+                                <i class="icon ion-ios-log-in"></i>
+                                <span><%- user.username.toUpperCase() %></span>
+                            </a>
+                        <% }%>
+                    </div>
+                    <!-- end header auth -->
+
+                    <!-- header menu btn -->
+                    <button class="header__btn" type="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <!-- end header menu btn -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- end header -->

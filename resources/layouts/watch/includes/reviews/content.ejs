@@ -1,0 +1,29 @@
+<!-- reviews -->
+<div class="col-12">
+    <div class="reviews">
+        <ul class="reviews__list">
+            <% reviews.forEach( function ( review ) { %>
+                <li class="reviews__item">
+                <div class="reviews__autor">
+                    <img class="reviews__avatar" src="<%- review.user.avatar %>" alt="">
+                    <span class="reviews__name"><%- review.review_title %></span>
+                    <span class="reviews__time"><% dt = new Date(review.created_at) %> <%- dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate() %> by John Doe</span>
+
+                    <span class="reviews__rating reviews__rating--green"><%- review.review_count %></span>
+                </div>
+                <p class="reviews__text"> <%- review.review_description %> </p>
+            </li>
+            <% }) %>
+        </ul>
+        <form action="#" class="form">
+            <input type="text" class="form__input" placeholder="Title">
+            <textarea class="form__textarea" placeholder="Review"></textarea>
+            <div class="form__slider">
+                <div class="form__slider-rating" id="slider__rating"></div>
+                <div class="form__slider-value" id="form__slider-value"></div>
+            </div>
+            <button type="button" class="form__btn">Send</button>
+        </form>
+    </div>
+</div>
+<!-- end reviews -->

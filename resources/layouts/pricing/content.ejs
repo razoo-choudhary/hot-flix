@@ -1,0 +1,40 @@
+<div class="row row--grid mt-5">
+    <!-- price -->
+    <div class="col-12 col-md-6 col-lg-4 order-md-2 order-lg-1">
+        <div class="price <% if(user.is_premium < 1 && user.premium_type < 1){ %> price--premium <% } %>">
+            <div class="price__item price__item--first"><span>Basic</span> <span>Free</span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> Unlimited Streaming</span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> Upto 720p HD Resolution</span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> Advertisement</span></div>
+            <div class="price__item price__item--none"><span><i class="icon ion-ios-close"></i> Download Availability</span></div>
+            <a href="javascript:void(0);" class="price__btn pay-plan" data-id="0"><% if(user.is_premium < 1 && user.premium_type < 1){ %> Current Plan <% } else {%> Choose Plan <% } %></a>
+        </div>
+    </div>
+    <!-- end price -->
+
+    <!-- price -->
+    <div class="col-12 col-md-12 col-lg-4 order-md-1 order-lg-2">
+        <div class="price <% if(user.is_premium > 0 && user.premium_type === 1){ %> price--premium <% } %>">
+            <div class="price__item price__item--first"><span>Premium</span> <span>NPR. 50 <sub>/ month</sub></span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> Unlimited Streaming</span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> Upto 1080p Full HD Resolution</span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> No Advertisement</span></div>
+            <div class="price__item price__item--none"><span><i class="icon ion-ios-close"></i> Download Availability</span></div>
+            <a href="javascript:void(0);" class="price__btn pay-plan" data-id="1"><% if(user.is_premium > 0 && user.premium_type === 1){ %> Current Plan <% } else {%> Choose Plan <% } %></a>
+        </div>
+    </div>
+    <!-- end price -->
+
+    <!-- price -->
+    <div class="col-12 col-md-6 col-lg-4 order-md-3">
+        <div class="price <% if(user.is_premium > 0 && user.premium_type === 2){ %> price--premium <% } %>">
+            <div class="price__item price__item--first"><span>Cinematic</span> <span>NPR. 100 <sub>/ month</sub></span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> Unlimited Streaming</span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> Upto 4k Ultra HD Resolution</span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> No Advertisement</span></div>
+            <div class="price__item"><span><i class="icon ion-ios-checkmark"></i> Download Availability</span></div>
+            <a href="javascript:void(0);" class="price__btn pay-plan" data-id="2"><% if(user.is_premium > 0 && user.premium_type === 2){ %> Current Plan <% } else {%> Choose Plan <% } %></a>
+        </div>
+    </div>
+    <!-- end price -->
+</div>

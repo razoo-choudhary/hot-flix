@@ -1,0 +1,15 @@
+<div class="card card--big">
+    <div class="card__cover">
+        <img src="/uploads/<%- movie.thumbnail %>" alt="">
+        <a href="/watch/<%- movie.movie_id %>" class="card__play">
+            <i class="icon ion-ios-play"></i>
+        </a>
+        <span class="card__rate card__rate--green"><%- movie.review %></span>
+    </div>
+    <div class="card__content">
+        <h3 class="card__title"><a href="/watch/<%- movie.movie_id %>"><%- movie.movie_name %></a></h3>
+        <span class="card__category">
+            <a href="#"><%- movie.genre %></a>
+        </span>
+    </div>
+</div>

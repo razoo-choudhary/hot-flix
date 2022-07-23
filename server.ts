@@ -11,8 +11,8 @@ export class Server {
 
     initializeServer () {
         dotenv.config( { path : __dirname + "/.env"} )
+        AuthMiddleware.Init()
         DatabaseConfig.Init().then( () => {
-            AuthMiddleware.Init()
             Mailing.Init()
         })
     }

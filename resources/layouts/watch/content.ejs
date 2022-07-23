@@ -1,0 +1,69 @@
+<section class="section section--details section--bg" data-bg="img/section/details.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="section__title section__title--mb"><%- movie.movie_name.toUpperCase() %></h1>
+            </div>
+            <div class="col-12 col-xl-6">
+                <div class="card card--details">
+                    <div class="row">
+                        <div class="col-12 col-sm-5 col-md-4 col-lg-3 col-xl-5">
+                            <div class="card__cover">
+                                <img src="/uploads/<%- movie.thumbnail %>" alt="">
+                                <span class="card__rate card__rate--green">8.4</span>
+                            </div>
+                            <a href="<%- movie.trailer %>" class="card__trailer"><i class="icon ion-ios-play-circle"></i> Watch trailer</a>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-9 col-xl-7">
+                            <div class="card__content">
+                                <ul class="card__meta">
+                                    <table>
+                                        <tr>
+                                            <td>Director</td>
+                                            <td style="padding-left: 25px;"><a href="#"><%- movie.director %></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cast</td>
+                                            <td style="padding-left: 25px;"><a href="#"><%- movie.cast %></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Genre</td>
+                                            <td style="padding-left: 25px;"><a href="#"><%- movie.genre %></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Release Year</td>
+                                            <td style="padding-left: 25px;"><a href="#"><%- new Date(movie.release_date).getFullYear() %></a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Running Time</td>
+                                            <td style="padding-left: 25px;"><a href="#"><%- movie.movie_duration %> min</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Country</td>
+                                            <td style="padding-left: 25px;"><a href="#"><%- movie.movie_origin %></a></td>
+                                        </tr>
+                                    </table>
+                                </ul>
+                                <div class="card__description" style="text-align: justify">
+                                    <%- movie.description %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-6">
+                <video controls crossorigin playsinline poster="/uploads/<%- movie.thumbnail %>" id="player">
+                    <% movie.videos.forEach(function( video ) { %>
+                        <source src="/playback/<%- video.video_hash %>" type="video/mp4" size="<%- video.quality %>">
+                    <% }); %>
+                    <% movie.subtitles.forEach(function( subtitle, count ) { %>
+                        <track kind="captions" label="<%- subtitle.language %>" srclang="<%- subtitle.language_src %>" src="/uploads/<%- subtitle.subtitle_slug %>.vtt" <% if(count === 0) {%> default <% } %> >
+                    <% }); %>
+                    <!-- <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>-->
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
+<%- include("./includes/content.ejs" , { user } ) %>
