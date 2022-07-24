@@ -1,8 +1,8 @@
 import {Request, Response} from "express";
 import {AuthMiddleware} from "../../middlewares/auth.middleware";
-import {Mailing} from "../../../../config/mailing";
+import {Mailing} from "../../../config/mailing";
 import {ResetToken} from "../../../entities/ResetToken";
-import {GeneralFunction} from "../../../../helpers/functions/General";
+import {GeneralFunction} from "../../../helpers/functions/General";
 
 export class ForgotController{
 

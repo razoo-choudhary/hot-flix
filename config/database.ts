@@ -11,7 +11,7 @@ export class DatabaseConfig{
             database    : process.env.DB_NAME || "",
             port        : Number(process.env.DB_PORT) || 3306,
             charset     : "utf8mb4",
-            entities    : [ path.join(__dirname, '../') + "/application/entities/*.{ts,js}"],
+            entities    : [ path.join(__dirname, '../') + "/entities/*.{ts,js}"],
             synchronize : true
         })
         await AppDataSource.initialize()

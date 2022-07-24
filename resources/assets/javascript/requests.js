@@ -18,3 +18,5 @@ const AuthRequest = ( data, url ) => {
         }
     })
 }
+
+let checkout = new KhaltiCheckout(config);

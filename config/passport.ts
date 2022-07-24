@@ -1,5 +1,5 @@
 import passportLocal from "passport-local";
-import {AuthController} from "../application/http/controllers/auth.controller";
+import {AuthController} from "../application/controllers/auth.controller";
 
 export class PassportConfig{
     static Init ( passport : any, getUserByUsername : any, getUserByUserId : any ) {

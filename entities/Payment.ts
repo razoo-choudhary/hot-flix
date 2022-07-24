@@ -1,5 +1,5 @@
 import {BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
-import {T_PAYMENT} from "../../helpers/constants/constants";
+import {T_PAYMENT} from "../helpers/constants/constants";
 
 @Entity(T_PAYMENT)
 export class Payment extends BaseEntity {
@@ -12,9 +12,9 @@ export class Payment extends BaseEntity {
     user_id !: number
 
     @Column( {
-        type : "integer"
+        type : "text"
     })
-    transaction_id !: number
+    transaction_id !: string
 
     @Column( {
         type : "integer"
@@ -24,7 +24,28 @@ export class Payment extends BaseEntity {
     @Column( {
         type : "integer"
     })
-    payment_refund !: number
+    payment_cashback !: number
+
+    @Column( {
+        type : "integer"
+    })
+    payment_fee !: number
+
+    @Column( {
+        type : "text"
+    })
+    paid_by !: string
+
+    @Column( {
+        type : "text"
+    })
+    status !: string
+
+    @Column( {
+        type : "boolean",
+        default : false
+    })
+    refunded !: boolean
 
     @CreateDateColumn()
     created_at !: Date

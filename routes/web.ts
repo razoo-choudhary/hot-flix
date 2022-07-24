@@ -1,12 +1,13 @@
 import express from "express";
-import {AuthMiddleware} from "../application/http/middlewares/auth.middleware";
-import {SigninController} from "../application/http/controllers/auth/signin.controller";
-import {AuthController} from "../application/http/controllers/auth.controller";
-import {HomeController} from "../application/http/controllers/home.controller";
-import {SignupController} from "../application/http/controllers/auth/signup.controller";
-import {ForgotController} from "../application/http/controllers/auth/forgot.controller";
-import {ResetController} from "../application/http/controllers/auth/reset.controller";
-import {WatchController} from "../application/http/controllers/watch.controller";
+import {AuthMiddleware} from "../application/middlewares/auth.middleware";
+import {SigninController} from "../application/controllers/auth/signin.controller";
+import {AuthController} from "../application/controllers/auth.controller";
+import {HomeController} from "../application/controllers/home.controller";
+import {SignupController} from "../application/controllers/auth/signup.controller";
+import {ForgotController} from "../application/controllers/auth/forgot.controller";
+import {ResetController} from "../application/controllers/auth/reset.controller";
+import {WatchController} from "../application/controllers/watch.controller";
+import {PaymentController} from "../application/controllers/payment.controller";
 
 const Router = express.Router()
 
@@ -34,6 +35,7 @@ Router.post( "/signin", AuthMiddleware.NonAuthenticatedGuard,   AuthController.P
 Router.post( "/signup", AuthMiddleware.NonAuthenticatedGuard,   SignupController.Signup )
 Router.post( "/forgot", AuthMiddleware.NonAuthenticatedGuard,   ForgotController.RequestResetLink )
 Router.post( "/reset",  AuthMiddleware.NonAuthenticatedGuard,   ResetController.ResetPassword )
+Router.post( "/verify-payment", AuthMiddleware.AuthenticatedGuard, PaymentController.ValidateKhaltiPayment)
 
 Router.get("*", (req, res) => res.send("404") )
 

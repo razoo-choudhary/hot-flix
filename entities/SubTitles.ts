@@ -1,30 +1,30 @@
 import {BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
-import {T_VIDEO} from "../../helpers/constants/constants";
+import {T_SUBTITLE} from "../helpers/constants/constants";
 
-@Entity(T_VIDEO)
-export class Video extends BaseEntity{
+@Entity(T_SUBTITLE)
+export class SubTitles extends BaseEntity{
     @PrimaryGeneratedColumn()
-    video_id !: number
+    subtitle_id !: number
 
     @Column( {
-        type : "integer"
+        type : "text"
     })
     movie_id !: number
 
     @Column( {
         type : "text"
     })
-    series_id !: string
+    language !: string
 
     @Column( {
         type : "text"
     })
-    quality !: string
+    language_src !: string
 
     @Column( {
         type : "text"
     })
-    video_hash !: string
+    subtitle_slug !: string
 
     @CreateDateColumn()
     created_at !: Date

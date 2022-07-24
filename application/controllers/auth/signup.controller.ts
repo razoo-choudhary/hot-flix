@@ -2,7 +2,7 @@ import {Request, Response} from "express";
 import {AuthMiddleware} from "../../middlewares/auth.middleware";
 import {User} from "../../../entities/User";
 import bcrypt from "bcryptjs";
-import {GeneralFunction} from "../../../../helpers/functions/General";
+import {GeneralFunction} from "../../../helpers/functions/General";
 
 export class SignupController {
 

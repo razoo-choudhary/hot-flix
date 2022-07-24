@@ -35,6 +35,7 @@
 <% if(typeof showHeaderFooter !== "undefined" && showHeaderFooter === true){ %> <%- include("footer/content") %> <% } %>
 
 <!-- JS -->
+<script src="/resources/assets/javascript/khalti.min.js"></script>
 <script src="/resources/assets/javascript/axios.min.js"></script>
 <script src="/resources/assets/javascript/snackbar.min.js"></script>
 <script src="/resources/assets/javascript/jquery-3.5.1.min.js"></script>
@@ -48,6 +49,26 @@
 <script src="/resources/assets/javascript/plyr.min.js"></script>
 <script src="/resources/assets/javascript/photoswipe.min.js"></script>
 <script src="/resources/assets/javascript/photoswipe-ui-default.min.js"></script>
+<script>
+    let config = {
+        "publicKey": "<% if(typeof khalti_public_key !== "undefined" ){ %><%- khalti_public_key %><% } %>",
+        "productIdentity": "premium-hot-flix",
+        "productName": "premium hot flix",
+        "productUrl": "http://localhost:5000",
+        "paymentPreference": [
+            "KHALTI",
+            "EBANKING",
+            "MOBILE_BANKING",
+            "CONNECT_IPS",
+            "SCT",
+        ],
+        "eventHandler": {
+            onSuccess (payload) {
+                axios.post("/verify-payment", payload).then(r => window.location.replace(r.data.location))
+            }
+        }
+    };
+</script>
 <script src="/resources/assets/javascript/requests.js"></script>
 <script src="/resources/assets/javascript/main.js"></script>
 <script src="/resources/assets/javascript/handler.js"></script>

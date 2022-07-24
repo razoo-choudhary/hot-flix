@@ -1,5 +1,5 @@
 import {BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
-import {T_MOVIE} from "../../helpers/constants/constants";
+import {T_MOVIE} from "../helpers/constants/constants";
 
 @Entity(T_MOVIE)
 export class Movie extends BaseEntity{

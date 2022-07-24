@@ -22,6 +22,7 @@ export class HomeController {
             expectedMovie       : await HomeController.expectedMovie(),
             showHeaderFooter    : true,
             newItemOfThisSeason : await HomeController.newItemsOfThisSeason(),
+            khalti_public_key   : process.env.KHALTI_PUBLIC_KEY ? process.env.KHALTI_PUBLIC_KEY : ""
         })
     }
 

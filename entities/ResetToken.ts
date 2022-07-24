@@ -1,21 +1,21 @@
 import {BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
-import {T_SCREENSHOTS} from "../../helpers/constants/constants";
+import {T_RESET_TOKEN} from "../helpers/constants/constants";
 
-@Entity(T_SCREENSHOTS)
-export class Screenshots extends BaseEntity{
+@Entity(T_RESET_TOKEN)
 
+export class ResetToken extends BaseEntity{
     @PrimaryGeneratedColumn()
-    ss_id !: number
+    token_id !: number
 
-    @Column({
+    @Column( {
         type : "integer"
     })
-    movie_id !: number
+    user_id !: number
 
-    @Column({
+    @Column( {
         type : "text"
     })
-    image_name !: string
+    token !: string
 
     @CreateDateColumn()
     created_at !: Date

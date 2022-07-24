@@ -1,5 +1,5 @@
 import {BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
-import {T_REVIEWS} from "../../helpers/constants/constants";
+import {T_REVIEWS} from "../helpers/constants/constants";
 
 @Entity(T_REVIEWS)
 export class Reviews extends BaseEntity{

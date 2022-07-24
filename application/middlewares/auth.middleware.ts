@@ -1,4 +1,4 @@
-import {PassportConfig} from "../../../config/passport";
+import {PassportConfig} from "../../config/passport";
 import passport from "passport";
 import {User} from "../../entities/User";
 import {Request, Response} from "express";
