@@ -32,4 +32,9 @@ export class ReviewController{
         if (reviewAmount > 0) return reviewAmount / reviews.length
         return reviewAmount
     }
+
+    static async GetUserTotalReview ( user_id : number ) {
+        const x = await Reviews.find({ where : { user_id }})
+        return x.length
+    }
 }

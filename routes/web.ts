@@ -8,6 +8,9 @@ import {ForgotController} from "../application/controllers/auth/forgot.controlle
 import {ResetController} from "../application/controllers/auth/reset.controller";
 import {WatchController} from "../application/controllers/watch.controller";
 import {PaymentController} from "../application/controllers/payment.controller";
+import {_404Controller} from "../application/controllers/error/_404.controller";
+import {StaticPageController} from "../application/controllers/custom/static.page.controller";
+import {UserController} from "../application/controllers/user/user.controller";
 
 const Router = express.Router()
 
@@ -18,6 +21,7 @@ Router.get( "/",                AuthMiddleware.AuthenticatedGuard,      HomeCont
 Router.get( "/signout",         AuthMiddleware.AuthenticatedGuard,      AuthController.DeAuthenticateUser )
 Router.get( "/watch/:key",      AuthMiddleware.AuthenticatedGuard,      WatchController.LoadView )
 Router.get( "/playback/:hash",  AuthMiddleware.AuthenticatedGuard,      WatchController.VideoPlayBack )
+Router.get( "/dashboard",       AuthMiddleware.AuthenticatedGuard,      UserController.LoadView )
 
 /**
  * AUTHENTICATED GET ROUTES
@@ -29,6 +33,12 @@ Router.get( "/reset/:token",    AuthMiddleware.NonAuthenticatedGuard,   ResetCon
 
 
 /**
+ * GLOBAL GET ROUTES
+ */
+Router.get( "/about",    StaticPageController.LoadViewAbout )
+Router.get( "/privacy",  StaticPageController.LoadViewPrivacy )
+
+/**
  * POST ROUTES
  */
 Router.post( "/signin", AuthMiddleware.NonAuthenticatedGuard,   AuthController.PreAuthenticate )
@@ -36,7 +46,10 @@ Router.post( "/signup", AuthMiddleware.NonAuthenticatedGuard,   SignupController
 Router.post( "/forgot", AuthMiddleware.NonAuthenticatedGuard,   ForgotController.RequestResetLink )
 Router.post( "/reset",  AuthMiddleware.NonAuthenticatedGuard,   ResetController.ResetPassword )
 Router.post( "/verify-payment", AuthMiddleware.AuthenticatedGuard, PaymentController.ValidateKhaltiPayment)
+Router.post( "/user-basics",    AuthMiddleware.AuthenticatedGuard, UserController.UpdateBasic)
+Router.post( "/user-password",  AuthMiddleware.AuthenticatedGuard, UserController.UpdatePassword)
 
-Router.get("*", (req, res) => res.send("404") )
+
+Router.get("*", _404Controller.LoadView )
 
 module.exports = Router

@@ -46,20 +46,27 @@ export class WatchController {
     static async VideoPlayBack ( request : Request, response : Response ) {
         if( request.headers.range ){
             const video         =   "./uploads/" + request.params.hash + ".mp4";
-            const videoSize     =   fs.statSync(video).size
-            const CHUNK_SIZE    =   10 ** 6
-            const start         =   Number(request.headers.range.replace(/\D/g, ""))
-            const end           =   Math.min(start + CHUNK_SIZE, videoSize - 1)
-            const contentLength =   end - start + 1
+            try{
+                const videoSize     =   fs.statSync(video).size
+                const CHUNK_SIZE    =   10 ** 6
+                const start         =   Number(request.headers.range.replace(/\D/g, ""))
+                const end           =   Math.min(start + CHUNK_SIZE, videoSize - 1)
+                const contentLength =   end - start + 1
 
-            response.writeHead( 206,  {
-                "Content-Range"     :   `bytes ${start}-${end}/${videoSize}`,
-                "Content-Length"    :   contentLength,
-                "Content-Type"      :   "video/mp4",
-                "Accept-Ranges"     :   "bytes",
-            })
+                response.writeHead( 206,  {
+                    "Content-Range"     :   `bytes ${start}-${end}/${videoSize}`,
+                    "Content-Length"    :   contentLength,
+                    "Content-Type"      :   "video/mp4",
+                    "Accept-Ranges"     :   "bytes",
+                })
 
-            fs.createReadStream( video,  { start, end } ).pipe( response )
+                fs.createReadStream( video,  { start, end } ).pipe( response )
+
+            } catch (e) {
+                response.status(401).json({
+                    location: "/"
+                })
+            }
         }
     }
 

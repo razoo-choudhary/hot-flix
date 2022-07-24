@@ -1,0 +1,196 @@
+<!-- page title -->
+<section class="section section--first section--bg" data-bg="/resources/assets/images/section/section.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section__wrap">
+                    <!-- section title -->
+                    <h2 class="section__title">My HotFlix</h2>
+                    <!-- end section title -->
+
+                    <!-- breadcrumb -->
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb__item"><a href="/">Home</a></li>
+                        <li class="breadcrumb__item breadcrumb__item--active">Profile</li>
+                    </ul>
+                    <!-- end breadcrumb -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end page title -->
+
+<!-- content -->
+<div class="content content--profile">
+    <!-- profile -->
+    <div class="profile">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="profile__content">
+                        <div class="profile__user">
+                            <div class="profile__avatar">
+                                <img src="<%- user.avatar %>" alt="">
+                            </div>
+                            <div class="profile__meta">
+                                <h3>John Doe</h3>
+                                <span>HOTFLIX ID: <%- user.user_id %></span>
+                            </div>
+                        </div>
+
+                        <!-- content tabs nav -->
+                        <ul class="nav nav-tabs content__tabs content__tabs--profile" id="content__tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Profile</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Subscription</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Settings</a>
+                            </li>
+                        </ul>
+                        <!-- end content tabs nav -->
+
+                        <!-- content mobile tabs nav -->
+                        <div class="content__mobile-tabs content__mobile-tabs--profile" id="content__mobile-tabs">
+                            <div class="content__mobile-tabs-btn dropdown-toggle" role="navigation" id="mobile-tabs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <input type="button" value="Profile">
+                                <span></span>
+                            </div>
+
+                            <div class="content__mobile-tabs-menu dropdown-menu" aria-labelledby="mobile-tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item"><a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Profile</a></li>
+
+                                    <li class="nav-item"><a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Subscription</a></li>
+
+                                    <li class="nav-item"><a class="nav-link" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Settings</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end content mobile tabs nav -->
+
+                        <button class="profile__logout" onclick="window.location.replace('/signout')" type="button">
+                            <i class="icon ion-ios-log-out"></i>
+                            <span>Sign out</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end profile -->
+
+    <div class="container">
+        <!-- content tabs -->
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="1-tab">
+                <div class="row row--grid">
+                    <!-- stats -->
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="stats">
+                            <span>Premium plan</span>
+                            <% if(user.premium_type === 1) { %>
+                                <p>NPR. 50.00 / month</p>
+                            <% }else if(user.premium_type === 2) { %>
+                                <p>NPR. 100.00 / month</p>
+                            <% }else{ %>
+                                <p>NPR. 00.00 / month</p>
+                            <% } %>
+                            <i class="icon ion-ios-card"></i>
+                        </div>
+                    </div>
+                    <!-- end stats -->
+
+                    <!-- stats -->
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="stats">
+                            <span>Films watched</span>
+                            <p><a href="#">1 678</a></p>
+                            <i class="icon ion-ios-film"></i>
+                        </div>
+                    </div>
+                    <!-- end stats -->
+
+                    <!-- stats -->
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="stats">
+                            <span>Your comments</span>
+                            <p><a href="#">0</a></p>
+                            <i class="icon ion-ios-chatbubbles"></i>
+                        </div>
+                    </div>
+                    <!-- end stats -->
+
+                    <!-- stats -->
+                    <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="stats">
+                            <span>Your reviews</span>
+                            <p><a href="#"><%- totalReviews %></a></p>
+                            <i class="icon ion-ios-star-half"></i>
+                        </div>
+                    </div>
+                    <!-- end stats -->
+
+                    <!-- dashbox -->
+                    <div class="col-12 col-xl-12">
+                        <div class="dashbox">
+                            <div class="dashbox__title">
+                                <h3><i class="icon ion-ios-film"></i> Movies for you</h3>
+
+                                <div class="dashbox__wrap">
+                                    <a class="dashbox__refresh" href="#"><i class="icon ion-ios-refresh"></i></a>
+                                    <a class="dashbox__more" href="catalog.html">View All</a>
+                                </div>
+                            </div>
+
+                            <div class="dashbox__table-wrap">
+                                <table class="main__table main__table--dash">
+                                    <thead>
+                                    <tr>
+                                        <th>TITLE</th>
+                                        <th>Genre</th>
+                                        <th>RATING</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <% recommended.forEach( function (movie) { %>
+                                        <tr>
+                                        <td>
+                                            <div class="main__table-text"><a href="#"><%- movie.movie_name %></a></div>
+                                        </td>
+                                        <td>
+                                            <div class="main__table-text"><%- movie.genre %></div>
+                                        </td>
+                                        <td>
+                                            <div class="main__table-text main__table-text--rate"><i class="icon ion-ios-star"></i> <%- movie.review %></div>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end dashbox -->
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="2-tab">
+                <%- include("../pricing/content.ejs") %>
+            </div>
+
+            <div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="3-tab">
+                <%- include("./settings.ejs") %>
+            </div>
+        </div>
+        <!-- end content tabs -->
+    </div>
+
+</div>
+<!-- end content -->
+<%- include("../featured/brands.ejs") %>

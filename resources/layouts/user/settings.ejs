@@ -1,0 +1,62 @@
+<div class="row">
+    <!-- details form -->
+    <div class="col-12 col-lg-6">
+        <form id="user-basic" class="form form--profile">
+            <div class="row row--form">
+                <div class="col-12">
+                    <h4 class="form__title">Profile details</h4>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                    <div class="form__group">
+                        <label class="form__label" for="username">Username</label>
+                        <input id="username" type="text" name="username" class="form__input" value="<%- user.username %>" placeholder="Username">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                    <div class="form__group">
+                        <label class="form__label" for="email">Email</label>
+                        <input id="email" type="text" name="email" class="form__input" value="<%- user.email %>" placeholder="Email">
+                    </div>
+                </div>
+
+
+                <div class="col-12">
+                    <button class="form__btn" type="submit">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- end details form -->
+
+    <!-- password form -->
+    <div class="col-12 col-lg-6">
+        <form id="user-password" class="form form--profile">
+            <div class="row row--form">
+                <div class="col-12">
+                    <h4 class="form__title">Change password</h4>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                    <div class="form__group">
+                        <label class="form__label" for="old-pass">Old password</label>
+                        <input id="old-pass" type="password" name="old_password" class="form__input">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                    <div class="form__group">
+                        <label class="form__label" for="newness">New password</label>
+                        <input id="newness" type="password" name="new_password" class="form__input">
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button class="form__btn" type="submit">Change</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- end password form -->
+</div>
