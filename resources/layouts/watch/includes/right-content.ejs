@@ -8,11 +8,11 @@
         <!-- end section title -->
 
         <!-- card -->
+        <% recommended.forEach( function ( movie ) { %>
         <div class="col-6 col-sm-4 col-lg-6">
-            <% recommended.forEach( function ( movie ) { %>
-                <%- include("../../home/includes/item-single.ejs", { movie })%>
-            <% }) %>
+             <%- include("../../home/includes/item-single.ejs", { movie })%>
         </div>
+        <% }) %>
         <!-- end card -->
     </div>
 </div>

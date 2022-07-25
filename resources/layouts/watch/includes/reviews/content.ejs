@@ -15,15 +15,18 @@
             </li>
             <% }) %>
         </ul>
-        <form action="#" class="form">
-            <input type="text" class="form__input" placeholder="Title">
-            <textarea class="form__textarea" placeholder="Review"></textarea>
+        <% if(typeof reviewed === "undefined" || !reviewed ){ %>
+        <form id="create-review" class="form">
+            <input type="text" name="title" class="form__input" placeholder="Title">
+            <textarea class="form__textarea" name="review" placeholder="Review"></textarea>
+            <input type="hidden" name="movie_id" value="<%- movie.movie_id %>" />
             <div class="form__slider">
                 <div class="form__slider-rating" id="slider__rating"></div>
                 <div class="form__slider-value" id="form__slider-value"></div>
             </div>
-            <button type="button" class="form__btn">Send</button>
+            <button type="submit" class="form__btn">Send</button>
         </form>
+        <% } %>
     </div>
 </div>
 <!-- end reviews -->

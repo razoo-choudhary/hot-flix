@@ -30,28 +30,27 @@ export class HomeController {
     static async newItemsOfThisSeason () {
         let x : any = await Movie.find({
             order   :   { created_at : "ASC" },
-            take    :   15
+            take    :   18
         })
 
         return await Promise.all(x.map( async (e: any) => ({...e , review : await ReviewController.GetReviewCount(e.movie_id)})))
     }
 
     static async AllMovies () {
-        const x = await Movie.find( { take : 15 })
+        const x = await Movie.find( { take : 18 })
         return await Promise.all(x.map( async (e: any) => ({...e , review : await ReviewController.GetReviewCount(e.movie_id)})))
     }
 
     static async expectedMovie () {
         const x = await Movie.find({
             where   :   { expected_date : MoreThan(new Date)},
-            take    :   15
+            take    :   18
         })
         return await Promise.all(x.map( async (e: any) => ({...e , review : await ReviewController.GetReviewCount(e.movie_id)})))
     }
 
     static async GetRecommendedMovie () {
         const x =  await Movie.find({
-            where   :   { expected_date : MoreThan(new Date)},
             take    :   6
         })
         return await Promise.all(x.map( async (e: any) => ({...e , review : await ReviewController.GetReviewCount(e.movie_id)})))

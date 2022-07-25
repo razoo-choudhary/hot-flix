@@ -17,7 +17,7 @@ export class Reviews extends BaseEntity{
     movie_id !: number
 
     @Column({
-        type : "integer"
+        type : "float"
     })
     review_count !: number
 

@@ -2,6 +2,9 @@ import {DataSource} from "typeorm";
 import path from "path";
 
 export class DatabaseConfig{
+
+    static DBConnection : DataSource;
+
     static async Init () {
         const AppDataSource = new DataSource({
             type        : "mysql",
@@ -14,6 +17,8 @@ export class DatabaseConfig{
             entities    : [ path.join(__dirname, '../') + "/entities/*.{ts,js}"],
             synchronize : true
         })
-        await AppDataSource.initialize()
+        await AppDataSource.initialize().then( ( Connection : any ) => {
+            DatabaseConfig.DBConnection = Connection
+        })
     }
 }

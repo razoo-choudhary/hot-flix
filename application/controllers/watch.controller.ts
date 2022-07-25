@@ -21,17 +21,19 @@ export class WatchController {
         if( !request.params.key ) return response.redirect("/")
         if( request.params.key ){
             const movie =   await WatchController.GetMovie( Number( request.params.key ) )
+            const user  =   AuthMiddleware.LoggedInUser
             if( movie ){
                 return response.status(200).render("watch/content", {
                     showHeaderFooter : true,
-                    user        : AuthMiddleware.LoggedInUser,
                     title       : "" + movie.movie_name,
                     keywords    : "",
                     description : "",
                     reviews     : await ReviewController.GetAllReview( movie.movie_id ),
                     recommended : await HomeController.GetRecommendedMovie(),
                     screenShots : await Screenshots.findBy( { movie_id : movie.movie_id }),
-                    movie
+                    reviewed    : await Reviews.findOneBy( { movie_id : movie.movie_id, user_id : user.user_id }),
+                    movie,
+                    user
                 })
             }
         }
@@ -77,7 +79,7 @@ export class WatchController {
      */
     static async GetMovie ( movie_id : number ) {
         let x : any =   await Movie.findOneBy( { movie_id : movie_id } )
-
+        x.review    =   await ReviewController.GetReviewCount( movie_id )
         x.videos    =   await Video.findBy( { movie_id } )
         x.subtitles =   await SubTitles.findBy({ movie_id } )
         return x;

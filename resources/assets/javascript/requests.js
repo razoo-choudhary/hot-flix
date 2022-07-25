@@ -7,7 +7,7 @@
 const AuthRequest = ( data, url ) => {
     axios.post( url, data ).then( response => {
         if( response.data.message ){
-            if(url === "/user-password") $("#user-password").trigger("reset")
+            if( url === "/user-password" ) $("#user-password").trigger("reset")
             Snackbar.show( { text : response.data.message } )
         }
         if( response.data.location ){

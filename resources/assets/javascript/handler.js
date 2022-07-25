@@ -22,6 +22,12 @@ $("#user-password").on("submit", function ( e ) { e.preventDefault()
     AuthRequest($(this).serialize(), "/user-password")
 })
 
+$("#create-review").on("submit", function ( e ) { e.preventDefault()
+    let h = $(this).serialize()
+    h += '&count=' + Number($('#form__slider-value').html());
+    AuthRequest(h, "/create-review")
+})
+
 $(".pay-plan").on("click", function () {
     let dataID = $(this).attr("data-id")
     if(dataID === "1"){
@@ -35,4 +41,10 @@ $(".pay-plan").on("click", function () {
     if(dataID === "2"){
         checkout.show({amount: 10000});
     }
+})
+
+$("#search-head").on("submit",  function ( e ){
+    e.preventDefault()
+    let data = $(this).serializeArray()
+    window.location.replace("/search/" + data[0]["value"]);
 })
