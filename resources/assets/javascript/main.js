@@ -1,6 +1,7 @@
 $(document).ready(function () {
 	"use strict"; // start of use strict
 
+	let existingFilter = JSON.parse(sessionStorage.getItem("filter")) ?? {}
 	/*==============================
 	Menu
 	==============================*/
@@ -211,6 +212,24 @@ $(document).ready(function () {
 		var item = $(this);
 		var id = item.closest('.filter__item').attr('id');
 		$('#'+id).find('.filter__item-btn input').val(text);
+
+
+		if(id === "filter__quality") {
+			if(text !== "All"){
+				existingFilter.quality = text;
+			}else{
+				delete existingFilter.quality
+			}
+		}
+		if(id === "filter__genre") {
+			if(text !== "All"){
+				existingFilter.genre = text;
+			}else{
+				delete existingFilter.genre
+			}
+		}
+
+		sessionStorage.setItem("filter", JSON.stringify(existingFilter))
 	});
 
 	/*==============================
@@ -493,12 +512,12 @@ $(document).ready(function () {
 			var firstSlider = document.getElementById('filter__years');
 			noUiSlider.create(firstSlider, {
 				range: {
-					'min': 2000,
-					'max': 2021
+					'min': Number($("#filter__years-start").html()),
+					'max': Number($("#filter__years-end").html())
 				},
 				step: 1,
 				connect: true,
-				start: [2007, 2019],
+				start: [existingFilter.releaseStart ?? Number($("#filter__years-start").html()), existingFilter.releaseEnd ??Number($("#filter__years-end").html())],
 				format: wNumb({
 					decimals: 0,
 				})
@@ -509,6 +528,9 @@ $(document).ready(function () {
 			];
 			firstSlider.noUiSlider.on('update', function( values, handle ) {
 				firstValues[handle].innerHTML = values[handle];
+				if(handle < 1) existingFilter.releaseStart = values[handle].toLowerCase()
+				if(handle > 0) existingFilter.releaseEnd = values[handle].toLowerCase()
+				sessionStorage.setItem("filter", JSON.stringify(existingFilter))
 			});
 		} else {
 			return false;
@@ -528,7 +550,7 @@ $(document).ready(function () {
 				},
 				step: 0.1,
 				connect: true,
-				start: [3.1, 8.6],
+				start : [ existingFilter.ratingStart ?? 0, existingFilter.ratingEnd ?? 10 ],
 				format: wNumb({
 					decimals: 1,
 				})
@@ -541,6 +563,9 @@ $(document).ready(function () {
 
 			secondSlider.noUiSlider.on('update', function( values, handle ) {
 				secondValues[handle].innerHTML = values[handle];
+				if(handle < 1) existingFilter.ratingStart = values[handle].toLowerCase()
+				if(handle > 0) existingFilter.ratingEnd = values[handle].toLowerCase()
+				sessionStorage.setItem("filter", JSON.stringify(existingFilter))
 			});
 
 			$('.filter__item-menu--range').on('click.bs.dropdown', function (e) {
@@ -582,4 +607,11 @@ $(document).ready(function () {
 		return false;
 	}
 	$(window).on('load', initializeThirdSlider());
+
+	if(existingFilter.genre) $("#genre-va").val(existingFilter.genre)
+	if(existingFilter.quality) $("#quality-va").val(existingFilter.quality)
+
+	var url = new URL(window.location.href);
+	var c = url.searchParams.get("filter");
+	if( !c || c === false) sessionStorage.removeItem("filter")
 });

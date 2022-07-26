@@ -1,24 +1,30 @@
 import {Request, Response} from "express";
-import {AuthMiddleware} from "../../middlewares/auth.middleware";
+import {BaseController} from "../base.controller";
 
 export class StaticPageController{
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @constructor
+     */
     static LoadViewAbout ( request : Request, response: Response ) {
-        return response.status(200).render("custom/about", {
-            user                : AuthMiddleware.LoggedInUser,
+        return BaseController.render(response,"custom/about", {
             title               : "About",
-            keywords            : "",
-            description         : "",
             showHeaderFooter    : true
         })
     }
 
+    /**
+     *
+     * @param request
+     * @param response
+     * @constructor
+     */
     static LoadViewPrivacy ( request : Request, response: Response ) {
-        return response.status(200).render("custom/privacy", {
-            user                : AuthMiddleware.LoggedInUser,
+        return BaseController.render(response,"custom/privacy", {
             title               : "Privacy",
-            keywords            : "",
-            description         : "",
             showHeaderFooter    : true
         })
     }

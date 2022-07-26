@@ -2,6 +2,7 @@ import {Request, Response} from "express";
 import {ResetToken} from "../../../entities/ResetToken";
 import {User} from "../../../entities/User";
 import bcrypt from "bcryptjs";
+import {BaseController} from "../base.controller";
 
 export class ResetController{
 
@@ -17,10 +18,8 @@ export class ResetController{
             await ResetToken.findOneBy( { token : request.params.token } ).then( async ( tokenData : any ) => {
                 if( !tokenData ) return response.redirect("/")
                 if( tokenData ){
-                    return response.status(200).render("auth/reset", {
+                    return BaseController.render(response,"auth/reset", {
                         title       : "Reset Password",
-                        keywords    : "",
-                        description : "",
                         tokenData
                     })
                 }

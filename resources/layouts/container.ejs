@@ -52,8 +52,8 @@
 <script>
     let config = {
         "publicKey": "<% if(typeof khalti_public_key !== "undefined" ){ %><%- khalti_public_key %><% } %>",
-        "productIdentity": "premium-hot-flix",
-        "productName": "premium hot flix",
+        "productIdentity": "premium-<%- config.app_name %>",
+        "productName": "premium <%- config.app_name %>",
         "productUrl": "http://localhost:5000",
         "paymentPreference": [
             "KHALTI",

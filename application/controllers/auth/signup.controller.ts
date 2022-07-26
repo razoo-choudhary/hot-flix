@@ -3,6 +3,7 @@ import {AuthMiddleware} from "../../middlewares/auth.middleware";
 import {User} from "../../../entities/User";
 import bcrypt from "bcryptjs";
 import {GeneralFunction} from "../../../helpers/functions/General";
+import {BaseController} from "../base.controller";
 
 export class SignupController {
 
@@ -13,10 +14,8 @@ export class SignupController {
      * @constructor
      */
     static LoadView ( request : Request, response : Response ) : any {
-        return response.status(200).render("auth/signup", {
+        return BaseController.render(response,"auth/signup", {
             title       : "sign up",
-            keywords    : "hello world",
-            description : "description is description",
         })
     }
 

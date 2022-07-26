@@ -48,3 +48,25 @@ $("#search-head").on("submit",  function ( e ){
     let data = $(this).serializeArray()
     window.location.replace("/search/" + data[0]["value"]);
 })
+
+function x_torque( page ) {
+    let filters = JSON.parse(sessionStorage.getItem("filter"))
+    let activePage = $(".paginatorClassed").find(".paginator__item--active > a").html();
+    if(page && page > 0) activePage = page
+    let link = "?page=" + activePage;
+    if( filters ){
+        Object.keys(filters).forEach(function(key) {
+            link += "&"+ key+"="+filters[key];
+        });
+        link += "&filter=true";
+    }
+    window.location.replace("/search/" + $(".btn-srh-input").val() + link)
+}
+
+$("#apply-filter").on("click", function () { x_torque() })
+
+$(".paginator__item").on("click", function (){
+    if(typeof Number($(this).find("a").attr("data-page")) === "number"){
+        x_torque(Number($(this).find("a").attr("data-page")))
+    }
+})

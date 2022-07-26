@@ -1,5 +1,10 @@
 export class GeneralFunction{
 
+    /**
+     *
+     * @param length
+     * @constructor
+     */
     static GenerateToken ( length : number) : string {
         const a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
         const b = [];
@@ -10,6 +15,27 @@ export class GeneralFunction{
         return b.join("");
     }
 
+    /**
+     *
+     */
+    static config () {
+        return {
+            app_name : process.env.APP_NAME
+        }
+    }
+
+    /**
+     *
+     * @param string
+     */
+    static capitalizeFirstLetter( string : string ) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    /**
+     *
+     * @constructor
+     */
     static CreateUserAvatar( ) : string {
         const diceBearUrl   =   process.env.DICE_BEAR_URL ?? "" + "/";
         return diceBearUrl + GeneralFunction.GenerateToken( 25 ) +  ".svg"

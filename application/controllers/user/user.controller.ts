@@ -4,6 +4,7 @@ import {ReviewController} from "../review.controller";
 import {HomeController} from "../home.controller";
 import bcrypt from "bcryptjs";
 import {User} from "../../../entities/User";
+import {BaseController} from "../base.controller";
 
 export class UserController{
 
@@ -15,15 +16,12 @@ export class UserController{
      */
     static async LoadView ( request : Request, response : Response ) {
         const user = AuthMiddleware.LoggedInUser
-        response.render("user/content", {
+        return BaseController.render(response,"user/content", {
             title               : user.username,
-            keywords            : "",
-            description         : "",
             showHeaderFooter    : true,
             totalReviews        : await ReviewController.GetUserTotalReview( user.user_id ),
             recommended         : await HomeController.GetRecommendedMovie(),
-            khalti_public_key   : process.env.KHALTI_PUBLIC_KEY ? process.env.KHALTI_PUBLIC_KEY : "",
-            user
+            khalti_public_key   : process.env.KHALTI_PUBLIC_KEY ? process.env.KHALTI_PUBLIC_KEY : ""
         })
     }
 

@@ -13,17 +13,23 @@ export class PaymentController{
      */
     static ValidateKhaltiPayment ( request : Request, res : Response ) {
         const { token, amount } = request.body
-        if(token && amount){
-            axios.post(process.env.KHALTI_VERIFY_URL ?? "", { token , amount }, {
-                headers: {
-                    'Authorization': 'Key ' + process.env.KHALTI_SECRET_KEY
-                }
-            }).then( async (response : any) => {
-                await PaymentController.SaveTransactionLog( response ).then( async (data) => {
-                    await PaymentController.UpgradeUserPremiumPolicy( data )
+        const data = { "token": token, "amount": amount };
+
+        const config = { headers: {'Authorization': 'Key ' + process.env.KHATLI_SECRET_KEY} };
+
+        axios.post( process.env.KHALTI_VERIFY_URL ?? "https://khalti.com/api/v2/payment/verify/", data, config).then( async (response : any) => {
+            await PaymentController.SaveTransactionLog( response ).then( async (data) => {
+                await PaymentController.UpgradeUserPremiumPolicy( data ).then( () => {
+                    return res.status(200).json({
+                        location : "/"
+                    })
                 })
             })
-        }
+        }).catch( () => {
+            return res.status(401).json({
+                message : "Sorry ! Cannot Request Your Payment Try Again ! "
+            })
+        })
     }
 
     /**

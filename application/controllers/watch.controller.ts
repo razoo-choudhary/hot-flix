@@ -8,6 +8,7 @@ import {Reviews} from "../../entities/Reviews";
 import {ReviewController} from "./review.controller";
 import {HomeController} from "./home.controller";
 import {Screenshots} from "../../entities/Screenshots";
+import {BaseController} from "./base.controller";
 
 export class WatchController {
 
@@ -23,17 +24,14 @@ export class WatchController {
             const movie =   await WatchController.GetMovie( Number( request.params.key ) )
             const user  =   AuthMiddleware.LoggedInUser
             if( movie ){
-                return response.status(200).render("watch/content", {
+                return BaseController.render(response,"watch/content", {
                     showHeaderFooter : true,
                     title       : "" + movie.movie_name,
-                    keywords    : "",
-                    description : "",
                     reviews     : await ReviewController.GetAllReview( movie.movie_id ),
                     recommended : await HomeController.GetRecommendedMovie(),
                     screenShots : await Screenshots.findBy( { movie_id : movie.movie_id }),
                     reviewed    : await Reviews.findOneBy( { movie_id : movie.movie_id, user_id : user.user_id }),
-                    movie,
-                    user
+                    movie
                 })
             }
         }
@@ -78,7 +76,7 @@ export class WatchController {
      * @constructor
      */
     static async GetMovie ( movie_id : number ) {
-        let x : any =   await Movie.findOneBy( { movie_id : movie_id } )
+        const x : any =   await Movie.findOneBy( { movie_id : movie_id } )
         x.review    =   await ReviewController.GetReviewCount( movie_id )
         x.videos    =   await Video.findBy( { movie_id } )
         x.subtitles =   await SubTitles.findBy({ movie_id } )

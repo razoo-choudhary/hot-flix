@@ -3,6 +3,7 @@ import {AuthMiddleware} from "../../middlewares/auth.middleware";
 import {Mailing} from "../../../config/mailing";
 import {ResetToken} from "../../../entities/ResetToken";
 import {GeneralFunction} from "../../../helpers/functions/General";
+import {BaseController} from "../base.controller";
 
 export class ForgotController{
 
@@ -13,10 +14,8 @@ export class ForgotController{
      * @constructor
      */
     static LoadView ( request :Request, response : Response ) {
-        return response.status(200).render("auth/forgot", {
+        return BaseController.render(response,"auth/forgot", {
             title       : "Forgot Password",
-            keywords    : "",
-            description : ""
         })
     }
 

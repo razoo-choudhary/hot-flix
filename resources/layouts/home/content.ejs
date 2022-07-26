@@ -110,10 +110,10 @@
             <!-- section title -->
             <div class="col-12">
                 <div class="section__title-wrap">
-                    <h2 class="section__title">Expected premiere</h2>
+                    <h2 class="section__title">Recommended For You</h2>
 
                     <div class="section__nav-wrap">
-                        <a href="catalog.html" class="section__view">View All</a>
+                        <a href="/all" class="section__view">View All</a>
 
                         <button class="section__nav section__nav--prev" type="button" data-nav="#carousel1">
                             <i class="icon ion-ios-arrow-back"></i>
@@ -130,7 +130,7 @@
             <!-- carousel -->
             <div class="col-12">
                 <div class="owl-carousel section__carousel" id="carousel1">
-                    <%  expectedMovie.forEach( function (movie) { %>
+                    <%  recommended.forEach( function (movie) { %>
                         <%- include("./includes/item-single.ejs", { movie }) %>
                     <% }) %>
                 </div>
@@ -146,11 +146,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-xl-10">
-                <h2 class="section__title section__title--mb"><b>HotFlix</b> – Best Place for Movies and TV Shows</h2>
+                <h2 class="section__title section__title--mb"><b><%- config.app_name %></b> – Best Place for Movies and TV Shows</h2>
 
-                <p class="section__text">HotFlix is a free movie streaming and downloading service that offers movies for no charge. Although HotFlix is free, it still requires funds to keep its servers functioning, and the only way to accomplish this is through advertising.</p>
+                <p class="section__text"><%- config.app_name %> is a free movie streaming and downloading service that offers movies for no charge. Although <%- config.app_name %> is free, it still requires funds to keep its servers functioning, and the only way to accomplish this is through advertising.</p>
 
-                <p class="section__text">If HotFlix is making your favorite movies and television series available at your fingertips for free and you're delighted with our work, feel free to accept a subscription package that will help us develop economically. Again, this is completely optional.</p>
+                <p class="section__text">If <%- config.app_name %> is making your favorite movies and television series available at your fingertips for free, and you're delighted with our work, feel free to accept a subscription package that will help us develop economically. Again, this is completely optional.</p>
             </div>
         </div>
         <%- include("../pricing/content.ejs", { user }) %>

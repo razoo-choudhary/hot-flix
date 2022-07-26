@@ -5,7 +5,7 @@
             <div class="col-12">
                 <div class="section__wrap">
                     <!-- section title -->
-                    <h2 class="section__title">My HotFlix</h2>
+                    <h2 class="section__title">My <%- config.app_name %></h2>
                     <!-- end section title -->
 
                     <!-- breadcrumb -->
@@ -34,8 +34,8 @@
                                 <img src="<%- user.avatar %>" alt="">
                             </div>
                             <div class="profile__meta">
-                                <h3>John Doe</h3>
-                                <span>HOTFLIX ID: <%- user.user_id %></span>
+                                <h3><%- helper.capitalizeFirstLetter(user.username) %></h3>
+                                <span><%- config.app_name %> ID: <%- user.user_id %></span>
                             </div>
                         </div>
 
@@ -161,10 +161,10 @@
                                     <% recommended.forEach( function (movie) { %>
                                         <tr>
                                         <td>
-                                            <div class="main__table-text"><a href="#"><%- movie.movie_name %></a></div>
+                                            <div class="main__table-text"><a href="#"><%- helper.capitalizeFirstLetter(movie.movie_name) %></a></div>
                                         </td>
                                         <td>
-                                            <div class="main__table-text"><%- movie.genre %></div>
+                                            <div class="main__table-text"><%- helper.capitalizeFirstLetter(movie.genre) %></div>
                                         </td>
                                         <td>
                                             <div class="main__table-text main__table-text--rate"><i class="icon ion-ios-star"></i> <%- movie.review %></div>

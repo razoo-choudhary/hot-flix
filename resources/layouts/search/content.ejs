@@ -1,17 +1,17 @@
 <!-- page title -->
-<section class="section section--first section--bg" data-bg="img/section/section.jpg">
+<section class="section section--first section--bg" data-bg="/resources/assets/images/section/section.jpg">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section__wrap">
                     <!-- section title -->
-                    <h1 class="section__title">Catalog</h1>
+                    <h1 class="section__title">Search</h1>
                     <!-- end section title -->
 
                     <!-- breadcrumb -->
                     <ul class="breadcrumb">
-                        <li class="breadcrumb__item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb__item breadcrumb__item--active">Catalog</li>
+                        <li class="breadcrumb__item"><a href="/">Home</a></li>
+                        <li class="breadcrumb__item breadcrumb__item--active"><%-helper.capitalizeFirstLetter(queryString)%></li>
                     </ul>
                     <!-- end breadcrumb -->
                 </div>
@@ -33,47 +33,14 @@
                             <span class="filter__item-label">GENRE:</span>
 
                             <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-genre" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <input type="button" value="Action/Adventure">
+                                <input type="button" id="genre-va" value="All">
                                 <span></span>
                             </div>
-
                             <ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-genre">
-                                <li>Action/Adventure</li>
-                                <li>Animals</li>
-                                <li>Animation</li>
-                                <li>Biography</li>
-                                <li>Comedy</li>
-                                <li>Cooking</li>
-                                <li>Dance</li>
-                                <li>Documentary</li>
-                                <li>Drama</li>
-                                <li>Education</li>
-                                <li>Entertainment</li>
-                                <li>Family</li>
-                                <li>Fantasy</li>
-                                <li>History</li>
-                                <li>Horror</li>
-                                <li>Independent</li>
-                                <li>International</li>
-                                <li>Kids</li>
-                                <li>Kids & Family</li>
-                                <li>Medical</li>
-                                <li>Military/War</li>
-                                <li>Music</li>
-                                <li>Musical</li>
-                                <li>Mystery/Crime</li>
-                                <li>Nature</li>
-                                <li>Paranormal</li>
-                                <li>Politics</li>
-                                <li>Racing</li>
-                                <li>Romance</li>
-                                <li>Sci-Fi/Horror</li>
-                                <li>Science</li>
-                                <li>Science Fiction</li>
-                                <li>Science/Nature</li>
-                                <li>Spanish</li>
-                                <li>Travel</li>
-                                <li>Western</li>
+                                <li>All</li>
+                                <% filters.genre.forEach(function (genre){ %>
+                                <li><%- helper.capitalizeFirstLetter(genre) %></li>
+                                <% })%>
                             </ul>
                         </div>
                         <!-- end filter item -->
@@ -83,15 +50,15 @@
                             <span class="filter__item-label">QUALITY:</span>
 
                             <div class="filter__item-btn dropdown-toggle" role="navigation" id="filter-quality" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <input type="button" value="HD 1080">
+                                <input type="button" id="quality-va" value="All">
                                 <span></span>
                             </div>
 
                             <ul class="filter__item-menu dropdown-menu scrollbar-dropdown" aria-labelledby="filter-quality">
-                                <li>HD 1080</li>
-                                <li>HD 720</li>
-                                <li>DVD</li>
-                                <li>TS</li>
+                                <li>All</li>
+                                <% filters.quality.forEach(function (quality){ %>
+                                <li><%-quality%></li>
+                                <% })%>
                             </ul>
                         </div>
                         <!-- end filter item -->
@@ -102,8 +69,8 @@
 
                             <div class="filter__item-btn dropdown-toggle" role="button" id="filter-rate" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="filter__range">
-                                    <div id="filter__imbd-start"></div>
-                                    <div id="filter__imbd-end"></div>
+                                    <div id="filter__imbd-start"><%-parseFloat(filters.rating.lowestRating)%></div>
+                                    <div id="filter__imbd-end"><%-parseFloat(filters.rating.highestRating)%></div>
                                 </div>
                                 <span></span>
                             </div>
@@ -120,8 +87,8 @@
 
                             <div class="filter__item-btn dropdown-toggle" role="button" id="filter-year" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="filter__range">
-                                    <div id="filter__years-start"></div>
-                                    <div id="filter__years-end"></div>
+                                    <div id="filter__years-start"><%- new Date(filters.yearReleased.min).getFullYear() %></div>
+                                    <div id="filter__years-end"><%- new Date(filters.yearReleased.max).getFullYear() %></div>
                                 </div>
                                 <span></span>
                             </div>
@@ -134,7 +101,7 @@
                     </div>
 
                     <!-- filter btn -->
-                    <button class="filter__btn" type="button">apply filter</button>
+                    <button class="filter__btn" type="button" id="apply-filter">apply filter</button>
                     <!-- end filter btn -->
                 </div>
             </div>
@@ -142,39 +109,41 @@
     </div>
 </div>
 <!-- end filter -->
-
-<!-- catalog -->
 <div class="catalog">
     <div class="container">
-        <div class="row row--grid">
-
-            <% movieLists.result.forEach( function ( movie ) {%>
-            <!-- card -->
-                <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-                    <%- include("../home/includes/item-single.ejs", { movie }) %>
-                </div>
-            <!-- end card -->
-        <% }) %>
-        </div>
-
-        <div class="row">
-            <!-- paginator -->
-            <div class="col-12">
-                <ul class="paginator">
-                    <li class="paginator__item paginator__item--prev">
-                        <a href="#"><i class="icon ion-ios-arrow-back"></i></a>
-                    </li>
-                    <li class="paginator__item"><a href="#">1</a></li>
-                    <li class="paginator__item paginator__item--active"><a href="#">2</a></li>
-                    <li class="paginator__item"><a href="#">3</a></li>
-                    <li class="paginator__item"><a href="#">4</a></li>
-                    <li class="paginator__item paginator__item--next">
-                        <a href="#"><i class="icon ion-ios-arrow-forward"></i></a>
-                    </li>
-                </ul>
+        <% if (movieLists.result.length > 0) {%>
+            <div class="row row--grid">
+                <% movieLists.result.forEach( function ( movie ) {%>
+                    <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+                        <%- include("../home/includes/item-single.ejs", { movie }) %>
+                    </div>
+                <% }) %>
             </div>
-            <!-- end paginator -->
-        </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="paginator paginatorClassed">
+                        <% if(movieLists.page !== 1){ %>
+                            <li class="paginator__item paginator__item--prev">
+                                <a href="javascript:void(0)" data-page="1"><i class="icon ion-ios-arrow-back"></i></a>
+                            </li>
+                        <% }%>
+                        <% for(let i = 1; i <= movieLists.totalPages; i++){ %>
+                            <li class="paginator__item <% if( i === movieLists.page ) {%>paginator__item--active<% }%>"><a href="javascript:void(0)" data-page="<%- i %>"><%- i %></a></li>
+                        <% } %>
+                        <% if(movieLists.LastPage !== movieLists.page){ %>
+                            <li class="paginator__item paginator__item--next">
+                                <a href="javascript:void(0)" data-page="<%- movieLists.LastPage %>"><i class="icon ion-ios-arrow-forward"></i></a>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        <% }else{ %>
+            <div class="row">
+                <div class="col-12" style="text-align: center">
+                    <p style="color: whitesmoke;">No Result Found ( Try Changing Filters )</p>
+                </div>
+            </div>
+        <% } %>
     </div>
 </div>
-<!-- end catalog -->

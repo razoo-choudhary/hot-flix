@@ -8,9 +8,9 @@
         <span class="card__rate card__rate--yellow"><%- movie.review %></span>
     </div>
     <div class="card__content">
-        <h3 class="card__title"><a href="/watch/<%- movie.movie_id %>"><%- movie.movie_name %></a></h3>
+        <h3 class="card__title"><a href="/watch/<%- movie.movie_id %>"><%= helper.capitalizeFirstLetter(movie.movie_name) %></a></h3>
         <span class="card__category">
-            <a href="#"><%- movie.genre %></a>
+            <a href="#"><%- helper.capitalizeFirstLetter(movie.genre) %></a>
         </span>
     </div>
 </div>

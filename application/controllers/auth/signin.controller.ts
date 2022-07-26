@@ -1,6 +1,7 @@
 import {Request, Response} from "express";
+import {BaseController} from "../base.controller";
 
-export class SigninController{
+export class SigninController extends BaseController{
 
     /**
      *
@@ -9,10 +10,8 @@ export class SigninController{
      * @constructor
      */
     static LoadView ( request : Request, response : Response ) {
-        return response.status(200).render("auth/signin", {
-            title       : "sign in",
-            keywords    : "hello world",
-            description : "description is description",
+        return BaseController.render(response, "auth/signin", {
+             title       : "Sign in",
         })
     }
 }

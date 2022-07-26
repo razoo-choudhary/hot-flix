@@ -11,7 +11,7 @@
                     <!-- header auth -->
                     <div class="header__auth">
                         <form class="header__search" id="search-head">
-                            <input class="header__search-input btn-srh-input" name="query" type="text" placeholder="Search...">
+                            <input class="header__search-input btn-srh-input" name="query" type="text" value="<% if ( typeof queryString !== "undefined") { %><%- queryString %><% } %>" placeholder="Search...">
                             <button class="header__search-button btn-srh" type="submit">
                                 <i class="icon ion-ios-search"></i>
                             </button>
@@ -27,12 +27,12 @@
                         <% if( typeof user === "undefined" || !user){ %>
                             <a href="/signin" class="header__sign-in">
                                 <i class="icon ion-ios-log-in"></i>
-                                <span>sign in</span>
+                                <span>Sign in</span>
                             </a>
                         <% }else{ %>
                             <a href="/dashboard" class="header__sign-in">
                                 <i class="icon ion-ios-log-in"></i>
-                                <span><%- user.username.toUpperCase() %></span>
+                                <span><%- helper.capitalizeFirstLetter(user.username) %></span>
                             </a>
                         <% }%>
                     </div>

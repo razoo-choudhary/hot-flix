@@ -729,7 +729,7 @@ ul {
   bottom: 0;
   left: 0;
   display: block;
-  background: url("../img/home/home__bg.jpg") no-repeat center/cover;
+  background: url("../images/home/home__bg.jpg") no-repeat center/cover;
   opacity: 0.1;
 }
 @media (min-width: 768px) {
@@ -2627,7 +2627,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   border-color: #f9ab00;
 }
 .form__select {
-  background: url("../img/arrow.svg") no-repeat center right 20px #222028;
+  background: url("../images/arrow.svg") no-repeat center right 20px #222028;
   background-size: 12px auto;
   border: 2px solid transparent;
   border-radius: 6px;

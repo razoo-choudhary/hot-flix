@@ -1,8 +1,7 @@
 import {Request, Response} from "express";
 import {Movie} from "../../entities/Movie";
-import {MoreThan} from "typeorm";
-import {AuthMiddleware} from "../middlewares/auth.middleware";
 import {ReviewController} from "./review.controller";
+import {BaseController} from "./base.controller";
 
 export class HomeController {
 
@@ -13,23 +12,19 @@ export class HomeController {
      * @constructor
      */
     static async LoadView ( request: Request, response : Response ) {
-        return response.status(200).render("home/content", {
-            user                : AuthMiddleware.LoggedInUser,
-            title               : "Home",
-            keywords            : "",
+        return BaseController.render(response,"home/content", {
+            title               : "home",
             allMovies           : await HomeController.AllMovies(),
-            description         : "",
-            expectedMovie       : await HomeController.expectedMovie(),
+            recommended         : await HomeController.GetRecommendedMovie( 20 ),
             showHeaderFooter    : true,
             newItemOfThisSeason : await HomeController.newItemsOfThisSeason(),
             khalti_public_key   : process.env.KHALTI_PUBLIC_KEY ? process.env.KHALTI_PUBLIC_KEY : ""
         })
     }
 
-
     static async newItemsOfThisSeason () {
-        let x : any = await Movie.find({
-            order   :   { created_at : "ASC" },
+        const x : any = await Movie.find({
+            order   :   { created_at : "DESC" },
             take    :   18
         })
 
@@ -41,18 +36,8 @@ export class HomeController {
         return await Promise.all(x.map( async (e: any) => ({...e , review : await ReviewController.GetReviewCount(e.movie_id)})))
     }
 
-    static async expectedMovie () {
-        const x = await Movie.find({
-            where   :   { expected_date : MoreThan(new Date)},
-            take    :   18
-        })
-        return await Promise.all(x.map( async (e: any) => ({...e , review : await ReviewController.GetReviewCount(e.movie_id)})))
-    }
-
-    static async GetRecommendedMovie () {
-        const x =  await Movie.find({
-            take    :   6
-        })
+    static async GetRecommendedMovie ( take = 6 ) {
+        const x =  await Movie.find({ take })
         return await Promise.all(x.map( async (e: any) => ({...e , review : await ReviewController.GetReviewCount(e.movie_id)})))
     }
 }
