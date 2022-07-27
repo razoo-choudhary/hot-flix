@@ -610,8 +610,4 @@ $(document).ready(function () {
 
 	if(existingFilter.genre) $("#genre-va").val(existingFilter.genre)
 	if(existingFilter.quality) $("#quality-va").val(existingFilter.quality)
-
-	var url = new URL(window.location.href);
-	var c = url.searchParams.get("filter");
-	if( !c || c === false) sessionStorage.removeItem("filter")
 });

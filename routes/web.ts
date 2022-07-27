@@ -25,6 +25,7 @@ Router.get( "/watch/:key",      AuthMiddleware.AuthenticatedGuard,      WatchCon
 Router.get( "/playback/:hash",  AuthMiddleware.AuthenticatedGuard,      WatchController.VideoPlayBack )
 Router.get( "/dashboard",       AuthMiddleware.AuthenticatedGuard,      UserController.LoadView )
 Router.get( "/search/:query",   AuthMiddleware.AuthenticatedGuard,      SearchController.LoadView )
+Router.get( "/all",             AuthMiddleware.AuthenticatedGuard,      SearchController.LoadView )
 
 /**
  * NON AUTHENTICATED GET ROUTES

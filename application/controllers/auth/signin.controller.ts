@@ -11,7 +11,7 @@ export class SigninController extends BaseController{
      */
     static LoadView ( request : Request, response : Response ) {
         return BaseController.render(response, "auth/signin", {
-             title       : "Sign in",
+             title  : "Sign in",
         })
     }
 }

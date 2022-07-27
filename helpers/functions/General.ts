@@ -20,7 +20,9 @@ export class GeneralFunction{
      */
     static config () {
         return {
-            app_name : process.env.APP_NAME
+            app_name    :   process.env.APP_NAME,
+            app_url     :   process.env.APP_URL,
+            app_mail    :   process.env.APP_MAIL
         }
     }
 

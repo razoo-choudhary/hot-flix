@@ -11,7 +11,7 @@ export class _404Controller{
      */
     static LoadView ( request : Request, response : Response ) {
         return BaseController.render(response,"error/404", {
-            title               : "Error 404",
+            title               : "404 Not Found",
             showHeaderFooter    : false,
             statusCode          : 404
         })

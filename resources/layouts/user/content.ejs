@@ -144,7 +144,7 @@
 
                                 <div class="dashbox__wrap">
                                     <a class="dashbox__refresh" href="#"><i class="icon ion-ios-refresh"></i></a>
-                                    <a class="dashbox__more" href="catalog.html">View All</a>
+                                    <a class="dashbox__more" href="/all">View All</a>
                                 </div>
                             </div>
 
@@ -161,7 +161,7 @@
                                     <% recommended.forEach( function (movie) { %>
                                         <tr>
                                         <td>
-                                            <div class="main__table-text"><a href="#"><%- helper.capitalizeFirstLetter(movie.movie_name) %></a></div>
+                                            <div class="main__table-text"><a href="<%- config.app_url %>/watch/<%- movie.movie_id %>"><%- helper.capitalizeFirstLetter(movie.movie_name) %></a></div>
                                         </td>
                                         <td>
                                             <div class="main__table-text"><%- helper.capitalizeFirstLetter(movie.genre) %></div>

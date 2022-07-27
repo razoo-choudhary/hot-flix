@@ -55,10 +55,10 @@ export class ForgotController{
     static SendPasswordResetLink ( response : Response, email : string, user_id : number ) {
         const token = GeneralFunction.GenerateToken(25)
         Mailing.Service.sendMail({
-            from        :   process.env.APP_MAIL,
+            from        :   GeneralFunction.config().app_mail,
             to          :   email,
             subject     :   "Password Reset Request",
-            html        :   `${process.env.APP_URL}/reset/${token}`,
+            html        :   `${GeneralFunction.config().app_url}/reset/${token}`,
         }).then( async ( emailStatus : any ) => {
             if( emailStatus ){
                 await ResetToken.save( { user_id, token } ).then( ( res  ) => {

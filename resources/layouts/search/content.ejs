@@ -5,13 +5,13 @@
             <div class="col-12">
                 <div class="section__wrap">
                     <!-- section title -->
-                    <h1 class="section__title">Search</h1>
+                    <h1 class="section__title"><%- queryString ? "Search" : "Explore" %></h1>
                     <!-- end section title -->
 
                     <!-- breadcrumb -->
                     <ul class="breadcrumb">
                         <li class="breadcrumb__item"><a href="/">Home</a></li>
-                        <li class="breadcrumb__item breadcrumb__item--active"><%-helper.capitalizeFirstLetter(queryString)%></li>
+                        <li class="breadcrumb__item breadcrumb__item--active"><%-helper.capitalizeFirstLetter(queryString ? queryString : "Explore")%></li>
                     </ul>
                     <!-- end breadcrumb -->
                 </div>

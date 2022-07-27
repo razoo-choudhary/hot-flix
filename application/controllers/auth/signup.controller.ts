@@ -15,7 +15,7 @@ export class SignupController {
      */
     static LoadView ( request : Request, response : Response ) : any {
         return BaseController.render(response,"auth/signup", {
-            title       : "sign up",
+            title   : "sign up",
         })
     }
 

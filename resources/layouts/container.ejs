@@ -25,6 +25,11 @@
     <meta name="description" content=" <%- description %> ">
     <meta name="keywords" content=" <%- keywords %> ">
     <title><%- title %></title>
+    <script>
+        var url = new URL(window.location.href);
+        var c = url.searchParams.get("filter");
+        if( !c || c === false) sessionStorage.removeItem("filter")
+    </script>
 </head>
 <body>
 

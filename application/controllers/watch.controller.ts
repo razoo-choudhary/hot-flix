@@ -76,10 +76,10 @@ export class WatchController {
      * @constructor
      */
     static async GetMovie ( movie_id : number ) {
-        const x : any =   await Movie.findOneBy( { movie_id : movie_id } )
-        x.review    =   await ReviewController.GetReviewCount( movie_id )
-        x.videos    =   await Video.findBy( { movie_id } )
-        x.subtitles =   await SubTitles.findBy({ movie_id } )
+        const x : any   =   await Movie.findOneBy( { movie_id : movie_id } )
+        x.review        =   await ReviewController.GetReviewCount( movie_id )
+        x.videos        =   await Video.findBy( { movie_id } )
+        x.subtitles     =   await SubTitles.findBy({ movie_id } )
         return x;
     }
 }

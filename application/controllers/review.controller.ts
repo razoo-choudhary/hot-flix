@@ -70,7 +70,11 @@ export class ReviewController{
                     review_description : review,
                     review_title : title,
                     movie_id
-                }).then( ( ) => { return response.status(200).json({ location : "/watch/" + movie_id}) })
+                }).then( ( ) => {
+                    return response.status(200).json({
+                        location : "/watch/" + movie_id
+                    })
+                })
             }
         }
     }

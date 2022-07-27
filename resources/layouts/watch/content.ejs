@@ -53,20 +53,23 @@
                 </div>
             </div>
             <% if(movie.expected_date === null){ %>
-            <div class="col-12 col-xl-6">
-                <video controls crossorigin playsinline poster="/uploads/<%- movie.thumbnail %>" id="player">
-                    <% movie.videos.forEach(function( video ) { %>
-                        <source src="/playback/<%- video.video_hash %>" type="video/mp4" size="<%- video.quality %>">
-                    <% }); %>
-                    <% movie.subtitles.forEach(function( subtitle, count ) { %>
-                        <track kind="captions" label="<%- subtitle.language %>" srclang="<%- subtitle.language_src %>" src="/uploads/<%- subtitle.subtitle_slug %>.vtt" <% if(count === 0) {%> default <% } %> >
-                    <% }); %>
-                    <!-- <a href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" download>Download</a>-->
-                </video>
-            </div>
-            <% }else{ %>
                 <div class="col-12 col-xl-6">
-                    <img src="/uploads/37546837.jpg" style="height: 50%;background-size: cover; padding: 10px; float: right" alt="">
+                    <video controls crossorigin playsinline poster="/uploads/<%- movie.thumbnail %>" id="player">
+                        <% movie.videos.forEach(function( video ) { %>
+                            <% if(Number((video.quality).replace(" ",'')) === 720 && user.is_premium === 1 && user.premium_type > 0) {%>
+                                <source src="/playback/<%- video.video_hash %>" type="video/mp4" size="<%- video.quality %>">
+                            <% } %>
+                            <% if(Number((video.quality).replace(" ",'')) > 720 && user.is_premium === 1 && user.premium_type > 1) {%>
+                                <source src="/playback/<%- video.video_hash %>" type="video/mp4" size="<%- video.quality %>">
+                            <% } %>
+                            <% if(Number((video.quality).replace(" ",'')) < 720){ %>
+                                <source src="/playback/<%- video.video_hash %>" type="video/mp4" size="<%- video.quality %>">
+                            <% } %>
+                        <% }); %>
+                        <% movie.subtitles.forEach(function( subtitle, count ) { %>
+                            <track kind="captions" label="<%- subtitle.language %>" srclang="<%- subtitle.language_src %>" src="/uploads/<%- subtitle.subtitle_slug %>.vtt" <% if(count === 0) {%> default <% } %> >
+                        <% }); %>
+                    </video>
                 </div>
             <% } %>
         </div>

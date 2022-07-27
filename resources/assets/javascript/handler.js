@@ -60,7 +60,7 @@ function x_torque( page ) {
         });
         link += "&filter=true";
     }
-    window.location.replace("/search/" + $(".btn-srh-input").val() + link)
+    window.location.replace($(".btn-srh-input").val() ? "/search/" + $(".btn-srh-input").val() + link : "/all?" + link)
 }
 
 $("#apply-filter").on("click", function () { x_torque() })

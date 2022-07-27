@@ -15,13 +15,13 @@ export class SearchController{
      * @constructor
      */
     static async LoadView ( request : Request, response : Response ) {
-        const data = await SearchController.getSearchItem(request.params.query,Number(request.query.page) || 1, request.query)
+        const data = await SearchController.getSearchItem(request.params.query ?? "",Number(request.query.page) || 1, request.query)
         return BaseController.render(response,"search/content", {
             showHeaderFooter : true,
             title       :   "",
             movieLists  :   data,
-            queryString :   request.params.query,
-            filters     :   await SearchController.GetFilters( request.params.query )
+            queryString :   request.params.query ?? "",
+            filters     :   await SearchController.GetFilters( request.params.query ?? "")
         })
     }
 
@@ -43,7 +43,7 @@ export class SearchController{
      */
     static async getSearchItem ( query : string, page = 1, params : any ,perPage = 18 ) {
         let result : any;
-        const where : any = { movie_name : Like("%"+query+"%")}
+        const where : any = query ? { movie_name : Like("%"+query+"%")} : {}
 
         if( params.genre && typeof params.genre !== "undefined") where.genre = params.genre
         if( params.releaseStart && params.releaseEnd ) {
@@ -115,8 +115,9 @@ export class SearchController{
      * @constructor
      */
     static async GetFilters ( query : string ) {
-        const  result : any  = await Movie.find( {where : { movie_name : Like("%"+query+"%")}});
-        const  dates  : any  = result.map( (value : { release_date : any; }) => new Date(value.release_date) )
+        const  where    : any   =  query ? { movie_name : Like("%"+query+"%")} : {}
+        const  result   : any   = await Movie.find( { where });
+        const  dates    : any   = result.map( (value : { release_date : any; }) => new Date(value.release_date) )
         return {
             genre           : result.map( (value: { genre: any; }) => value.genre ),
             rating          : await SearchController.calculateHighestAndLowestRating(result),
