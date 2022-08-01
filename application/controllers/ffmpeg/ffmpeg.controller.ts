@@ -7,7 +7,6 @@ export class FfmpegController{
     public static qualitiesToGenerate  : string [] = []
     public static qualitiesGenerated   :  any = []
     private static FFMPEG    : any
-    public  static Thumbnail : any
 
     /**
      *
@@ -40,7 +39,7 @@ export class FfmpegController{
      * @private
      */
     private static async mergerVideoProbe () {
-        FfmpegController.qualitiesGenerated     = []
+        FfmpegController.qualitiesGenerated = []
         for (const quality of FfmpegController.qualitiesToGenerate){
             const hash = GeneralFunction.GenerateToken(40)
             FfmpegController.FFMPEG.output(`./uploads/${hash}.mp4`).size(quality)
