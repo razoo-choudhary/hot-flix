@@ -70,3 +70,12 @@ $(".paginator__item").on("click", function (){
         x_torque(Number($(this).find("a").attr("data-page")))
     }
 })
+
+$("#admin-upload").on("submit", function ( e ) {
+    e.preventDefault()
+    loaderBeforeContent = $(this).find(".form__btn").html()
+    const loader = '<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>';
+    $(this).find(".form__btn").html(loader)
+    const formData = new FormData(this)
+    UploadMovie(formData, $(this))
+})

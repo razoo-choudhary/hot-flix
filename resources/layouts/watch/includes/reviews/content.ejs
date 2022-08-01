@@ -7,7 +7,7 @@
                 <div class="reviews__autor">
                     <img class="reviews__avatar" src="<%- review.user.avatar %>" alt="">
                     <span class="reviews__name"><%- helper.capitalizeFirstLetter(review.review_title) %></span>
-                    <span class="reviews__time"><% dt = new Date(review.created_at) %> <%- dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate() %> by <%- helper.capitalizeFirstLetter(user.username)%></span>
+                    <span class="reviews__time"><% dt = new Date(review.created_at) %> <%- dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate() %> by <%- helper.capitalizeFirstLetter(review.   user.username)%></span>
 
                     <span class="reviews__rating reviews__rating--green"><%- review.review_count %></span>
                 </div>

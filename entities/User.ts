@@ -38,6 +38,12 @@ export class User extends BaseEntity{
     })
     premium_type !: number
 
+    @Column( {
+        type : "integer",
+        default : 0
+    })
+    is_admin !: number
+
     @CreateDateColumn()
     created_at !: Date
 

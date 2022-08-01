@@ -49,6 +49,11 @@ export class Movie extends BaseEntity{
     @Column({
         type : "text"
     })
+    poster !: string
+
+    @Column({
+        type : "text"
+    })
     thumbnail !: string
 
     @Column({

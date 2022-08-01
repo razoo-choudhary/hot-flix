@@ -19,7 +19,7 @@ export const openServer = app.listen( 5000 , () => {
 
     app.set( "views" , viewPath )
     app.set( "view engine" , "ejs" )
-    app.set( "layout" , "container" )
+    app.set( "layout" , "main--layout" )
 
     app.use( express.static( staticPath ) )
     app.use( bodyParser.urlencoded( { extended : true } ) )
@@ -37,6 +37,7 @@ export const openServer = app.listen( 5000 , () => {
     app.use( passport.session() )
 
     app.use( "/api", require("./routes/api") )
+    app.use( "/admin", require("./routes/admin") )
     app.use( require("./routes/web") )
 
     server.initializeServer()
